@@ -1,0 +1,72 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    
+</head>
+<body style="background-color: #1d1f3e;">
+    <div style="margin-top:200px;color:white;font-size: 60px;font-family: Verdana, Geneva, Tahoma, sans-serif;text-align: center;padding-top:100px;">
+        
+        {% if output %}
+            <h3> Attack Class should be <b style="color:red;">{{ output }}</b>  </h3>
+        {% endif %}
+    </div>
+   
+    
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Output Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <style>
+        body {
+            background-color: #1d1f3e;
+            color: white;
+            font-size: 60px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            color: white;
+            background-color: #4CAF50; /* Green color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-top:200px;">
+        {% if output %}
+            <h3> Attack Class should be <b style="color:red;">{{ output }}</b>  </h3>
+        {% endif %}
+        <!-- Add Back Button -->
+        <a href="{{ url_for('home') }}" class="back-button">Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!-- <!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Network Intrusion Detection System</title>
+  <link rel="stylesheet" href="static/style.css">
+  <style>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #10112E;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  font-weight: 600;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.button{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+</style>
+  </style>
+</head>
+
+<body style="background-color: #1d1f3e;color:white;font-family:CircularStdBlack,sans-serif;font-weight: 500;margin-left: 0px;">
+
+  <ul>
+    <li  style="margin-left: 45%;"><a style="pointer-events: none;font-size: 24px;">Boosting Network Intrusion Detection With Two-Level 
+      Ensemble Learning And Knowledge Distillation 
+      Approaches</a></li>
+  </ul><br><br><br><br><br>
+      
+     <div style="
+     font-size: 6em; 
+     opacity: 0.95; 
+     z-index: 1; 
+     pointer-events: none; 
+     right: 100px; 
+     top: 150px; 
+     color: #ffffff; 
+     position: fixed; 
+     font-weight: bold; 
+     text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); 
+     letter-spacing: 0.1em;
+     transform: rotate(-10deg);
+     line-height: 1.2;
+     font-family: 'Arial Black', sans-serif;
+     mix-blend-mode: overlay;
+     user-select: none;
+ ">
+     NIDS<br>Based<br>Web-App
+ </div>
+ 
+
+    <form action="/predict" method="post" style="width: 50%;font-size: 1.2em;margin-left: 50px;">
+        <label for="attack">Attack:</label>
+        <select id="attack" name="attack">
+          <option value="0">Other</option>
+          <option value="1">neptune</option>
+          <option value="2">normal</option>
+          <option value="3">satan</option>
+        </select><br><br>
+
+        <label for="count">Number of connections to the same destination host as the current connection in the past two seconds :</label>
+    	<input type="text" name="count" placeholder="count" required="required" /><br><br>
+
+    	<label for="dst_host_diff_srv_rate">The percentage of connections that were to different services, among the connections aggregated in dst_host_count :</label>
+        <input type="text" name="dst_host_diff_srv_rate" placeholder="dst_host_diff_srv_rate" required="required" /><br><br>
+
+        <label for="dst_host_same_src_port_rate">The percentage of connections that were to the same source port, among the connections aggregated in dst_host_srv_count :</label>
+		<input type="text" name="dst_host_same_src_port_rate" placeholder="dst_host_same_src_port_rate" required="required" /><br><br>
+
+		<label for="dst_host_same_srv_rate">The percentage of connections that were to the same service, among the connections aggregated in dst_host_count :</label>
+		<input type="text" name="dst_host_same_srv_rate" placeholder="dst_host_same_srv_rate" required="required" /><br><br>
+
+		<label for="dst_host_srv_count">Number of connections having the same port number :</label>
+		<input type="text" name="dst_host_srv_count" placeholder="dst_host_srv_count" required="required" /><br><br>
+
+		<label for="flag">Status of the connection –Normal or Error :</label>
+		<select id="flag" name="flag">
+          <option value="0">Other</option>
+          <option value="1">S0</option>
+          <option value="2">SF</option>
+        </select><br><br>
+
+        <label for="last_flag">Last Flag :</label>
+    	<input type="text" name="last_flag" placeholder="last_flag" required="required" /><br><br>
+
+    	<label for="logged_in">1 if successfully logged in; 0 otherwise :</label>
+        <input type="text" name="logged_in" placeholder="logged_in" required="required" /><br><br>
+
+    	<label for="same_srv_rate">The percentage of connections that were to the same service, among the connections aggregated in count :</label>
+        <input type="text" name="same_srv_rate" placeholder="same_srv_rate" required="required" /><br><br>
+
+        <label for="serror_rate">The percentage of connections that have activated the flag (4) s0, s1, s2 or s3, among the connections aggregated in count :</label>
+        <input type="text" name="serror_rate" placeholder="serror_rate" required="required" /><br><br>
+
+		<label for="service_http">Destination network service used http or not :</label>
+		<select id="service_http" name="service_http">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select><br><br>
+
+        <button type="submit" class="button" style="border-radius: 10px;">Predict</button>
+    </form>
+   <br>
+    {% if output %}
+       <h3> Attack Class should be <b style="color:red;">{{ output }}</b>  </h3>
+    {% endif %}
+  
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Network Intrusion Detection System</title>
+  <link rel="stylesheet" href="static/style.css">
+  <style>
+    body {
+      background-color: #1d1f3e;
+      color: white;
+      font-family: CircularStdBlack, sans-serif;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #10112E;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    li {
+      display: inline;
+    }
+
+    li a {
+      display: block;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <ul>
+    <li>
+      <a style="pointer-events: none; font-size: 24px;">
+        Boosting Network Intrusion Detection With Two-Level Ensemble Learning And Knowledge Distillation Approaches
+      </a>
+    </li>
+  </ul>
+  <br><br><br><br><br>
+  
+  <div style="
+     font-size: 6em; 
+     opacity: 0.95; 
+     z-index: 1; 
+     pointer-events: none; 
+     right: 100px; 
+     top: 150px; 
+     color: #ffffff; 
+     position: fixed; 
+     font-weight: bold; 
+     text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); 
+     letter-spacing: 0.1em;
+     transform: rotate(-10deg);
+     line-height: 1.2;
+     font-family: 'Arial Black', sans-serif;
+     mix-blend-mode: overlay;
+     user-select: none;">
+    NIDS<br>Based<br>Web-App
+  </div>
+
+  <form action="/predict" method="post" style="width: 50%; font-size: 1.2em; margin: 0 auto; padding-top: 50px;">
+    <label for="attack">Attack:</label>
+    <select id="attack" name="attack">
+      <option value="0">Other</option>
+      <option value="1">neptune</option>
+      <option value="2">normal</option>
+      <option value="3">satan</option>
+    </select><br><br>
+
+    <label for="count">Number of connections to the same destination host as the current connection in the past two seconds:</label>
+    <input type="text" name="count" placeholder="count" required="required" /><br><br>
+
+    <label for="dst_host_diff_srv_rate">The percentage of connections that were to different services, among the connections aggregated in dst_host_count:</label>
+    <input type="text" name="dst_host_diff_srv_rate" placeholder="dst_host_diff_srv_rate" required="required" /><br><br>
+
+    <label for="dst_host_same_src_port_rate">The percentage of connections that were to the same source port, among the connections aggregated in dst_host_srv_count:</label>
+    <input type="text" name="dst_host_same_src_port_rate" placeholder="dst_host_same_src_port_rate" required="required" /><br><br>
+
+    <label for="dst_host_same_srv_rate">The percentage of connections that were to the same service, among the connections aggregated in dst_host_count:</label>
+    <input type="text" name="dst_host_same_srv_rate" placeholder="dst_host_same_srv_rate" required="required" /><br><br>
+
+    <label for="dst_host_srv_count">Number of connections having the same port number:</label>
+    <input type="text" name="dst_host_srv_count" placeholder="dst_host_srv_count" required="required" /><br><br>
+
+    <label for="flag">Status of the connection – Normal or Error:</label>
+    <select id="flag" name="flag">
+      <option value="0">Other</option>
+      <option value="1">S0</option>
+      <option value="2">SF</option>
+    </select><br><br>
+
+    <label for="last_flag">Last Flag:</label>
+    <input type="text" name="last_flag" placeholder="last_flag" required="required" /><br><br>
+
+    <label for="logged_in">1 if successfully logged in; 0 otherwise:</label>
+    <input type="text" name="logged_in" placeholder="logged_in" required="required" /><br><br>
+
+    <label for="same_srv_rate">The percentage of connections that were to the same service, among the connections aggregated in count:</label>
+    <input type="text" name="same_srv_rate" placeholder="same_srv_rate" required="required" /><br><br>
+
+    <label for="serror_rate">The percentage of connections that have activated the flag (4) s0, s1, s2 or s3, among the connections aggregated in count:</label>
+    <input type="text" name="serror_rate" placeholder="serror_rate" required="required" /><br><br>
+
+    <label for="service_http">Destination network service used http or not:</label>
+    <select id="service_http" name="service_http">
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </select><br><br>
+
+    <button type="submit" class="button">Predict</button>
+  </form>
+</body>
+</html>
+ -->
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Network Intrusion Detection System</title>
+  <link rel="stylesheet" href="static/style.css">
+  <style>
+    body {
+      background: url('https://files.oaiusercontent.com/file-3tz9GdG3nPpo9chyjqcbER?se=2024-12-06T05%3A07%3A17Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dfdb89b4e-b390-463c-9d86-ee7f86a8a936.webp&sig=1p2sHv2QscvT4HbriWwmmi7uCu44f1kCS4ZksxLfC0o%3D') no-repeat center center fixed;
+      /* Replace the above URL with the actual image link for "Network Intrusion Detection" */
+      background-size: cover;
+      color: white;
+      font-family: CircularStdBlack, sans-serif;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: rgba(16, 17, 46, 0.9); /* Transparent background */
+      position: fixed;
+      top: 0;
+      width: 100%;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    li {
+      display: inline;
+    }
+
+    li a {
+      display: block;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 10px;
+    }
+
+    form {
+      background: rgba(0, 0, 0, 0.6); /* Semi-transparent form background */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+      margin: 0 auto;
+      width: 50%;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+
+  <ul>
+    <li>
+      <a style="pointer-events: none; font-size: 24px;">
+        Boosting Network Intrusion Detection With Two-Level Ensemble Learning And Knowledge Distillation Approaches
+      </a>
+    </li>
+  </ul>
+  <br><br><br><br><br>
+  
+  <div style="
+     font-size: 6em; 
+     opacity: 0.95; 
+     z-index: 1; 
+     pointer-events: none; 
+     right: 100px; 
+     top: 150px; 
+     color: #ffffff; 
+     position: fixed; 
+     font-weight: bold; 
+     text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); 
+     letter-spacing: 0.1em;
+     transform: rotate(-10deg);
+     line-height: 1.2;
+     font-family: 'Arial Black', sans-serif;
+     mix-blend-mode: overlay;
+     user-select: none;">
+    <!-- NIDS<br>Based<br>Web-App -->
+  </div>
+  <form action="/predict" method="post">
+    <label for="attack">Attack:</label>
+    <select id="attack" name="attack">
+      <option value="0">Other</option>
+      <option value="1">neptune</option>
+      <option value="2">normal</option>
+      <option value="3">satan</option>
+    </select><br><br>
+
+    <label for="count">Number of connections to the same destination host as the current connection in the past two seconds:</label>
+    <input type="text" name="count" placeholder="count" required="required" /><br><br>
+
+    <label for="dst_host_diff_srv_rate">The percentage of connections that were to different services, among the connections aggregated in dst_host_count:</label>
+    <input type="text" name="dst_host_diff_srv_rate" placeholder="dst_host_diff_srv_rate" required="required" /><br><br>
+
+    <label for="dst_host_same_src_port_rate">The percentage of connections that were to the same source port, among the connections aggregated in dst_host_srv_count:</label>
+    <input type="text" name="dst_host_same_src_port_rate" placeholder="dst_host_same_src_port_rate" required="required" /><br><br>
+
+    <label for="dst_host_same_srv_rate">The percentage of connections that were to the same service, among the connections aggregated in dst_host_count:</label>
+    <input type="text" name="dst_host_same_srv_rate" placeholder="dst_host_same_srv_rate" required="required" /><br><br>
+
+    <label for="dst_host_srv_count">Number of connections having the same port number:</label>
+    <input type="text" name="dst_host_srv_count" placeholder="dst_host_srv_count" required="required" /><br><br>
+
+    <label for="flag">Status of the connection – Normal or Error:</label>
+    <select id="flag" name="flag">
+      <option value="0">Other</option>
+      <option value="1">S0</option>
+      <option value="2">SF</option>
+    </select><br><br>
+
+    <label for="last_flag">Last Flag:</label>
+    <input type="text" name="last_flag" placeholder="last_flag" required="required" /><br><br>
+
+    <label for="logged_in">1 if successfully logged in; 0 otherwise:</label>
+    <input type="text" name="logged_in" placeholder="logged_in" required="required" /><br><br>
+
+    <label for="same_srv_rate">The percentage of connections that were to the same service, among the connections aggregated in count:</label>
+    <input type="text" name="same_srv_rate" placeholder="same_srv_rate" required="required" /><br><br>
+
+    <label for="serror_rate">The percentage of connections that have activated the flag (4) s0, s1, s2 or s3, among the connections aggregated in count:</label>
+    <input type="text" name="serror_rate" placeholder="serror_rate" required="required" /><br><br>
+
+    <label for="service_http">Destination network service used http or not:</label>
+    <select id="service_http" name="service_http">
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </select><br><br>
+
+    <button type="submit" class="button">Predict</button>
+  </form>
+</body>
+</html>
